@@ -1,3 +1,4 @@
+import { DATE_TIME_FORMAT_MMM_DD_HH_MM_YYYY } from "@/shared/constants/date-formats";
 import type { Task } from "@/shared/types/task";
 import EditIcon from "@mui/icons-material/Edit";
 import {
@@ -28,12 +29,19 @@ export const TaskDetailsView: FC<{ data: Task; onClose: () => void }> = ({
   return (
     <>
       <DialogContent>
-        <Box display="flex" justifyContent="space-between" flexWrap='wrap'>
+        <Box display="flex" justifyContent="space-between" flexWrap="wrap">
           <Stack>
             <Typography variant="caption" color="textSecondary">
               Title
             </Typography>
-            <Typography>{data.title}</Typography>
+            <Typography
+              sx={{
+                whiteSpace: "pre-wrap",
+                wordBreak: "break-word",
+              }}
+            >
+              {data.title}
+            </Typography>
           </Stack>
           {data.completedAt && (
             <Stack>
@@ -41,7 +49,7 @@ export const TaskDetailsView: FC<{ data: Task; onClose: () => void }> = ({
                 Completed at
               </Typography>
               <Typography>
-                {format(data.completedAt, "MMM dd HH:mm, yyyy")}
+                {format(data.completedAt, DATE_TIME_FORMAT_MMM_DD_HH_MM_YYYY)}
               </Typography>
             </Stack>
           )}
@@ -50,7 +58,14 @@ export const TaskDetailsView: FC<{ data: Task; onClose: () => void }> = ({
           <Typography variant="caption" color="textSecondary">
             Description
           </Typography>
-          <Typography>{data.description}</Typography>
+          <Typography
+            sx={{
+              whiteSpace: "pre-wrap",
+              wordBreak: "break-word",
+            }}
+          >
+            {data.description}
+          </Typography>
         </Stack>
       </DialogContent>
       <DialogActions>
